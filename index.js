@@ -56,6 +56,16 @@ async function run() {
       const result = await bookingCollection.insertOne(booking);
       return res.json({ success: true, result });
     });
+    
+    // Delete
+    app.delete('/booking/:id', async(req,res)=>{
+        const id = req.params.id
+        const query = {_id: ObjectId(id)};
+        const result = await bookingCollection.deleteOne(query);
+        res.send(result);
+    })
+
+
   } finally {
     // await client.close();
   }
